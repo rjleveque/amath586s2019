@@ -1,0 +1,252 @@
+\documentclass[10pt]{article}
+
+\usepackage{graphicx}
+\usepackage{amsmath,amsfonts,amssymb}
+
+\usepackage{hyperref}  % for urls and hyperlinks
+
+
+\setlength{\textwidth}{6.2in}
+\setlength{\oddsidemargin}{0.3in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textheight}{8.9in}
+\setlength{\voffset}{-1in}
+\setlength{\headsep}{26pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+
+
+
+\input{../latex/macros.tex}  % input some useful macros
+
+\begin{document}
+
+% header:
+\hfill\vbox{\hbox{AMath 586 / ATM 581}
+\hbox{Homework \#1}\hbox{Due Thursday, April 11, 2019}}
+
+\vskip 5pt
+
+Homework is due to Canvas by 11:00pm PDT on the due date.
+
+To submit, see
+\url{https://canvas.uw.edu/courses/1271892/assignments/4773426}
+
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+\vskip 1cm
+
+If you haven't done so already, clone the class repository and read about how 
+to use it on the class webpage
+\url{http://staff.washington.edu/rjl/classes/am586s2016/class_repos.html}.
+
+Also figure out how to use Jupyter notebooks from the {\tt notebooks} directory
+of the repository.  See 
+\url{http://staff.washington.edu/rjl/classes/am586s2016/code.html}.
+
+
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 1.}
+
+Check that the solution $u(t)$ given by (5.8) in the textbook
+satisfies the ODE (5.6) and
+initial condition.  Hint: To differentiate the matrix exponential you can
+differentiate the Taylor series (D.31) (in Appendix D) term by term.
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 2.}
+
+
+Consider the IVP
+\begin{equation*}
+\begin{split}
+u_1' &= 2u_1,\\
+u_2' &= 3u_1 - u_2,
+\end{split}
+\end{equation*}
+with initial conditions specified at time $t=0$.  Solve this problem in two
+different ways:
+
+\begin{enumerate}
+\item Solve the first equation, which only involves $u_1$, and then insert
+this function into the second equation to obtain a nonhomogeneous linear
+equation for $u_2$.  Solve this using (5.8).  
+Check that your solution satisfies the initial conditions and the ODE.
+
+\item Write the system as $u' = Au$ and compute the matrix exponential using
+(D.30) to obtain the solution.
+\end{enumerate}
+
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 3.}
+
+
+Consider the IVP
+\begin{equation*}
+\begin{split}
+u_1' &= 2u_1,\\
+u_2' &= 3u_1 + 2u_2,
+\end{split}
+\end{equation*}
+with initial conditions specified at time $t=0$.  Solve this problem in two
+different ways:
+
+\begin{enumerate}
+\item Solve the first equation, which only involves $u_1$, and then insert
+this function into the second equation to obtain a nonhomogeneous linear
+equation for $u_2$.  Solve this using (5.8).
+Check that your solution satisfies the initial conditions and the ODE.
+
+\item Write the system as $u' = Au$ and compute the matrix exponential using
+(D.35) to obtain the solution.  (See Appendix C.3 for a discussion of the
+Jordan Canonical form in the defective case.)
+\end{enumerate}
+
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 4.}
+
+Section 2.16 of the textbook describes the ODE modeling a simple pendulum,
+given in (2.74):
+\begin{equation}\label{pendulum}
+\theta''(t) = -(g/L)\sin(\theta(t)).
+\end{equation}
+with initial data on the angle $\theta(0) = \theta_0$ and the angular velocity $\theta'(0) = v_0$.  
+
+
+Recall that $\theta$ is the angle from vertical, with $\theta = 0$ (or 
+more generally $\theta = 2\pi N$ for any integer $N$) corresponding straight
+down.  With velocity
+$v=0$ these points are stable equilibria.
+The values $\theta = (2N+1)\pi$ correspond to straight up and are 
+unstable equilibria is $v=0$.  (Stable in the sense of ODE theory --- if the
+data is perturbed by a small amount then the solution stays close to the
+original solution.)
+
+For $\theta(0)$ and $\theta'(0)$ sufficiently small this can be approximated
+by the linearized equation
+\[
+\theta''(t) = -(g/L)\theta(t).
+\]
+Rewrite this as a first order system of two equations and solve using the
+matrix exponential approach.  (You probably already know what the solution
+looks like in terms of sine and cosine, and you should see this come out of
+complex exponentials since the matrix has imaginary eigenvalues in this case.)
+
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 5.}
+
+Rewrite the nonlinear pendulum equation (\ref{pendulum}) 
+as a first order system of two equations and set up a solver
+for this problem in a Jupyter notebook using {\tt scipy.integrate.solve\_ivp}, 
+following the example in the notebook {\tt Example\_using\_solve\_ivp} from the
+class repository.  
+
+Develop the notebook to illustrate the following tests, 
+including some commentary about what you observe.  
+
+Use values $g = 9.81$ m/s$^2$ and $L = 1$ meter.
+
+\begin{enumerate}
+\item Show that for $\theta(0)$ sufficiently small and $\theta'(0)=0$ the 
+solution computed with {\tt solve\_ivp} agrees well with the exact solution of
+the linearized equation, as a test that you have implemented things properly.
+
+\item Try $\theta(0) = 3.1,~ \theta'(0) = 0$ and solve up to time $T = 15$
+using the {\tt RK45} method with the default error tolerance.  Note that the
+pendulum is close to vertical initially.  Comment on whether the solution
+seems reasonable.
+
+\item Try other values of $\theta(0)$ that are close to $\pi$ (also 
+values slightly larger than $\pi$) and comment on your results.
+
+\item Try setting {\tt rtol} to a smaller value than the default and comment
+on whether you can get reasonable solutions with sufficiently small tolerance.
+ 
+\end{enumerate}
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+
+%--------------------------------------------------------------------------
+\newpage
+%\vskip 1cm
+\hrule
+{\bf Problem 6.}
+
+Determine the coefficients $\beta_0,~\beta_1,~\beta_2$ for the third
+order, 2-step Adams-Moulton method.  Do this in two different ways:
+\begin{enumerate} 
+ \item Using the expression for the local truncation error in Section 5.9.1,
+ \item Using the relation
+ \[
+ u(t_{n+2}) = u(t_{n+1}) + \int_{t_{n+1}}^{t_{n+2}}\,f(u(s))\,ds.
+ \]
+ Interpolate  a quadratic polynomial $p(t)$ through the three values
+ $f(U^n),~f(U^{n+1})$ and $f(U^{n+2})$ and then integrate this polynomial
+ exactly to obtain the formula.  The coefficients of the polynomial will
+ depend on the three values $f(U^{n+j})$.   It's easiest to use the
+ ``Newton form'' of the interpolating polynomial and consider the three
+times $t_n=-k$, $t_{n+1}=0$, and $t_{n+2}=k$ so that $p(t)$ has the form
+\[
+p(t) = A + B(t+k) + C(t+k)t
+\]
+where $A,~B$, and $C$ are the appropriate divided differences based on the
+data.  Then integrate from $0$ to $k$.   (The method has the same
+coefficients at any time, so this is valid.)
+\end{enumerate}
+
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+%--------------------------------------------------------------------------
+
+\end{document}

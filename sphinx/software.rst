@@ -20,6 +20,25 @@ Some other resources:
 - `AMath 583 notes <http://faculty.washington.edu/rjl/classes/am583s2014/notes/index.html#python>`_
   (from 2013) on Python ,
 - `Python Tutorial <https://docs.python.org/2/tutorial/>`_,
+- `IPython documentation <http://ipython.org/documentation.html>`_ 
+- `Jupyter Notebook documentation
+  <http://jupyter.org/>`_
+
+- `NumPy Documentation <http://www.numpy.org/>`_
+
+- `NumPy for Matlab users
+  <https://docs.scipy.org/doc/numpy/user/numpy-for-matlab-users.html>`_
+  Useful list of commands (and Matlab equivalents)
+
+- `Matplotlib Gallery <http://matplotlib.org/gallery.html>`_
+  (illustrating how to make various types of plots)
+
+- `SciPy Documentation <http://scipy.org/>`_ includes many other scientific
+  packages.
+
+- `SymPy Documentation <https://www.sympy.org/en/index.html>`_ for symbolic
+  mathematics
+
 - Many other tutorials can be found online.
 
 To use Python effectively you will need `numpy <http://www.scipy.org/>`_ 

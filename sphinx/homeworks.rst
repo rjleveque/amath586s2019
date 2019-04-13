@@ -17,9 +17,9 @@ Schedule (tentative)
 ---------------------
 
 * :ref:`Homework1` due Thursday, April 11
-* :ref:`Homework2` due Thursday, April 18
+* :ref:`Homework2` due Tuesday, April 23
 * :ref:`Homework3` due Thursday, May 2
-* Midterm: Friday, May 10  
+* Midterm: Wednesday, May 8  
 * :ref:`Homework4` due Thursday, May 16
 * :ref:`Homework5` due Thursday, May 30
 * :ref:`Final` due Thursday, June 13

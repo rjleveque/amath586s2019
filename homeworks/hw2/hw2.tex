@@ -1,0 +1,222 @@
+\documentclass[10pt]{article}
+
+\usepackage{graphicx}
+\usepackage{amsmath,amsfonts,amssymb}
+
+\usepackage{hyperref}  % for urls and hyperlinks
+
+
+\setlength{\textwidth}{6.2in}
+\setlength{\oddsidemargin}{0.3in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textheight}{8.9in}
+\setlength{\voffset}{-1in}
+\setlength{\headsep}{26pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+
+
+
+\input{../latex/macros.tex}  % input some useful macros
+
+\begin{document}
+
+% header:
+\hfill\vbox{\hbox{AMath 586 / ATM 581}
+\hbox{Homework \#2}\hbox{Due Thursday, April 23, 2019}}
+
+\vskip 5pt
+
+Homework is due to Canvas by 11:00pm PDT on the due date.
+
+To submit, see
+\url{https://canvas.uw.edu/courses/1271892/assignments/4790261}
+
+
+%--------------------------------------------------------------------------
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 1}
+
+Which of the following Linear Multistep Methods are convergent?  For 
+the ones that are not, are they inconsistent, or not zero-stable, or both?
+ \begin{enumerate}
+ \item $U^{n+3} = U^{n+1} + 2kf(U^n)$,
+ \item $U^{n+2} = \half U^{n+1} + \half U^{n} + 2kf(U^{n+1})$,
+ \item $\unp = U^n$, 
+ \item $U^{n+4} = U^{n} + \frac 4 3 k(f(U^{n+3})+f(U^{n+2})+f(U^{n+1}))$,
+ \item $U^{n+3} = -U^{n+2} + U^{n+1} +U^{n}+2k(f(U^{n+2})+f(U^{n+1}))$.
+ \end{enumerate}
+
+
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 3}
+
+\begin{enumerate}
+\item Determine the general solution to the linear difference equation
+$U^{n+2} = U^{n+1} + U^n$.
+
+\item Determine the solution to this difference equation with the starting
+values $U^0=1$, $U^1=1$.  Use this to determine $U^{30}$?  
+(Note, these are the {\em Fibonacci numbers}, which of course should all be
+integers.)
+
+\item Show that for large $n$ the ratio of successive Fibonacci numbers
+$U^n/U^{n-1}$ approaches the ``golden ratio'' $\phi \approx 1.618034$.
+\end{enumerate} 
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 2}
+Any $r$-stage Runge-Kutta method applied to $u'=\lambda u$ will give an
+expression of the form
+\[
+U^{n+1} = R(z)U^n
+\]
+where $z=\lambda k$ and $R(z)$ is a rational function, a ratio of
+polynomials in $z$ each having degree at most $r$.  For an explicit method
+$R(z)$ will simply be a polynomial of degree $r$ and for an implicit method
+it will be a more general rational function.
+
+Since $u(t_{n+1}) = e^z u(t_n)$ for this problem, we expect that a $p$th
+order accurate method will give a function $R(z)$ satisfying
+\[
+\qquad  R(z) = e^z + \bigo(z^{p+1}) \quad\text{as}~z \goto 0.
+\]
+This indicates that the one-step error is $\bigo(z^{p+1})$ on this problem,
+as expected for a $p$th order accurate method.
+
+The explicit
+Runge-Kutta method of Example 5.13 is fourth order accurate in general,
+so in particular it should exhibit this accuracy when applied to 
+$u'(t) = \lambda u(t)$.  Show that in fact when applied to this
+problem the method becomes $U^{n+1} = R(z)U^n$ where $R(z)$ is 
+a polynomial of degree 4, and that this polynomial agrees with the Taylor
+expansion of $e^z$ through $O(z^4)$ terms.
+
+We will see that this function $R(z)$ is also important in the study of 
+absolute stability of a one-step method.
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 2}
+
+
+Determine the function $R(z)$ described in the previous exercise for the
+TR-BDF2 method given in (5.37).  Note that this can be simplified to the
+form (8.6), which is given only for the autonomous case but that suffices
+for $u'(t) = \lambda u(t)$.  (You might want to convince yourself these are 
+the same method).
+
+Confirm that $R(z)$ agrees with $e^z$ to the expected order.
+
+Note that for this implicit method $R(z)$ will be a rational function, so you
+will have to expand the denominator in a Taylor series, or use the Neumann
+series 
+\[
+1/(1-\epsilon) = 1 + \epsilon + \epsilon^2 + \epsilon^3 + \cdots.
+\]
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+
+
+%--------------------------------------------------------------------------
+%\vskip 1cm
+\hrule
+{\bf Problem 4}
+
+The Jupyter notebook {\tt Pendulum\_ForwardEuler.ipynb} gives an implementation of Forward Euler on the nonlinear pendulum problem
+\begin{align}
+\theta'(t) &= v(t)\\
+v'(t) &= -\sin(\theta(t))
+\end{align}
+
+Modify this code to implement the Backward Euler method.  Since this is an 
+implicit method, you need to solve a nonlinear equation in each step.  
+Although it is a system of two equations, you can reduce it to a scalar
+nonlinear equation.  In each step we have to solve
+\begin{align}
+\Theta^{n+1} = \Theta^n + kV^{n+1},\\
+V^{n+1} = V^n - \sin(\Theta^{n+1})
+\end{align}
+and substituting the second equation in the first gives a single equation to 
+solve for $\Theta^{n+1}$, of the form $\phi(theta) = 0$ with
+$\phi(\theta) = \theta + k^2\sin(\theta) - (\Theta^n - kV^n)$.
+This can be done in each time step by defining the function $\phi$ and then
+calling the root-finder 
+\href{https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.fsolve.html}{scipy.optimize.fsolve}.
+The value $\Theta^n$ from the previous 
+time step is generally a good starting guess for the root. So this gives
+a loop like:
+
+\begin{verbatim}
+for n in range(0,nsteps):
+    phi = lambda theta: theta + dt**2*sin(theta) - (U[0,n]  + dt*U[1,n])
+    new_theta = fsolve(phi, U[0,n])
+    U[0,n+1] = new_theta
+    U[1,n+1] = U[1,n] - dt * sin(new_theta)
+\end{verbatim}
+
+Comment on how solutions computed with this method compare to 
+those obtained with Forward Euler.  Test with different size time steps
+to confirm that you see the expected first order accuracy.
+For this you may want to take a much shorter time interval than in the
+notebook in order to get the expected asymptotics with a reasonable number
+of time steps.  Also note that you cannot necessarily assume the 
+reference solution computed with {\tt solve\_ivp} is as accurate as the
+tolerance specified, especially over long time intervals!
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 5}
+
+Repeat the previous problem for the Trapezoidal method.  
+Again comment on the behavior of the solution in this case, 
+and check the order of accuracy.
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+
+\end{document}

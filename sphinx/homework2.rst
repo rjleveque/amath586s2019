@@ -27,4 +27,6 @@ Due by 11:00pm on April 23, 2019.
   as...` menu, or with the `jupyter nbconvert` command.   
   If you use a Python script, please submit the `.py` file.
 
-
+- The notebook `Pendulum_ForwardEuler.ipynb` is saved in the github
+  repository without output, but if you want to view the animation it
+  creates, you can see `this html version <_static/Pendulum_ForwardEuler.html>`_

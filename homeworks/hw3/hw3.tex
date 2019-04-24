@@ -1,0 +1,187 @@
+\documentclass[10pt]{article}
+
+\usepackage{graphicx}
+\usepackage{amsmath,amsfonts,amssymb}
+
+\usepackage{hyperref}  % for urls and hyperlinks
+
+
+\setlength{\textwidth}{6.2in}
+\setlength{\oddsidemargin}{0.3in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textheight}{8.9in}
+\setlength{\voffset}{-1in}
+\setlength{\headsep}{26pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+
+
+
+\input{../latex/macros.tex}  % input some useful macros
+
+\begin{document}
+
+% header:
+\hfill\vbox{\hbox{AMath 586 / ATM 581}
+\hbox{Homework \#3}\hbox{Due Thursday, May 2, 2019}}
+
+\vskip 5pt
+
+Homework is due to Canvas by 11:00pm PDT on the due date.
+
+To submit, see
+\url{https://canvas.uw.edu/courses/1271892/assignments/4796403}
+
+
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 1}
+
+Consider the implicit Runge-Kutta method
+\begin{equation}\label{ex1}
+\begin{split}
+U^* &= U^n + \frac{k}{2} f\large(U^*, t_n + k/2\large),\\
+U^{n+1} &= U^n + k f\large(U^*, t_n + k/2\large).
+\end{split}
+\end{equation} 
+The first step is Backward Euler to determine an approximation to the value
+at the midpoint in time and the second step is the midpoint method using
+this value.
+
+\begin{enumerate}
+\item Determine the order of accuracy of this method.
+\item Plot the region of absolute stability.
+\item Is this method A-stable?  Is it L-stable?
+\end{enumerate}
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 2}
+
+
+Plot the stability region for the TR-BDF2 method (8.6).   
+You can start with the code in the
+notebook {\tt Stability\_Regions\_onestep.ipynb}.
+
+By analyzing $R(z)$, show 
+that the method is both A-stable and L-stable.
+Hint: To show A-stability, show that $|R(z)| \leq 1$ on the imaginary axis
+and explain why this is enough.
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 3}
+
+
+Let $g(x)=0$ represent a system of $s$ nonlinear equations in $s$ unknowns,
+so $x\in\reals^s$ and $g: \reals^s \goto \reals^s$.  A vector $\bar
+x\in\reals^s$ is a {\em fixed point} of $g(x)$ if 
+\begin{equation}\label{a}
+\bar x = g(\bar x).
+\end{equation}
+One way to attempt to compute $\bar x$ is with {\em fixed point iteration}:
+from some starting guess $x^0$, compute
+\begin{equation}\label{b}
+x^{j+1} = g(x^j)
+\end{equation}
+for $j=0,~1,~\ldots$.
+
+\begin{enumerate}
+\item Show that if there exists a norm $\|\cdot\|$ such that $g(x)$ is
+Lipschitz continuous with constant $L<1$ in a neighborhood of $\bar x$, then
+fixed point iteration converges from any starting value in this
+neighborhood.
+{\bf Hint:} Subtract equation \eqn{a} from \eqn{b}.
+
+\item Suppose $g(x)$ is differentiable and let $g'(x)$ be the $s\times s$
+Jacobian matrix.  Show that if the condition of part (a) holds then
+$\rho(g'(\bar x)) < 1$, where $\rho(A)$ denotes the spectral radius of a
+matrix.
+
+\newpage
+\item Consider a predictor-corrector method (see Section 5.9.4) consisting
+of forward Euler as the predictor and backward Euler as the corrector, and
+suppose we make $N$ correction iterations, i.e., we set
+\begin{tabbing}
+xxxxxxxxx\=xxxx\=\kill\\
+\>$\hat U^0 = U^n + kf(U^n)$\\
+\>for $j = 0,~1,~\ldots,~N-1$\\
+\>\>$\hat U^{j+1} = U^n + kf(\hat U^j)$\\
+\>\>end\\
+\>$U^{n+1} = \hat U^N$.
+\end{tabbing}
+Note that this can be interpreted as a fixed point iteration for solving the
+nonlinear equation
+\[
+\unp = U^n + kf(\unp)
+\]
+of the backward Euler method.  Since the backward Euler method is implicit
+and has a stability region that includes the entire left half plane, as
+shown in Figure 7.1(b), one might hope that this predictor-corrector method
+also has a large stability region.
+
+Plot the stability region $S_N$ of this method for $N=2,~5,~10,~20,~50$ 
+and observe that in fact the stability region does not grow much in size.
+
+\item Using the result of part (b), show that the fixed point iteration
+being used in the predictor-corrector method of part (c) can only be
+expected to converge if $|k\lambda| < 1$ for all eigenvalues $\lambda$ of
+the
+Jacobian matrix $f'(u)$.  
+
+\item Based on the result of part (d) and the shape of the stability region
+of Backward Euler, what do you expect the stability region $S_N$ of part (c)
+to converge to as $N\goto\infty$?
+
+\end{enumerate}
+
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 4}
+
+This problem requires running and modifying the notebook 
+{\tt ScalarStiffness\_TestMethods.ipynb} in the notebooks directory.
+
+Add to this method a cell that implements the TR-BDF2 method for this
+problem and produces similar plots to the ones shown for the Euler and
+Trapezoidal methods.  Verify that the L-stability of the TR-BDF2 method
+leads to superior performance on a stiff problem with a rapid initial 
+transient.
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+
+%--------------------------------------------------------------------------
+\end{document}
+

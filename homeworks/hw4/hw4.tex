@@ -1,0 +1,146 @@
+\documentclass[10pt]{article}
+
+\usepackage{graphicx}
+\usepackage{amsmath,amsfonts,amssymb}
+
+% use different colors for links:
+\usepackage{color}
+\definecolor{darkgreen}{rgb}{0.1,0.5,0.1}
+\definecolor{darkblue}{rgb}{0.2,0.2,1.0}
+\usepackage[colorlinks=true,linkcolor=darkblue,citecolor=darkblue,
+            filecolor=darkblue,urlcolor=darkgreen]{hyperref}
+
+
+\setlength{\textwidth}{6.2in}
+\setlength{\oddsidemargin}{0.3in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textheight}{8.9in}
+\setlength{\voffset}{-1in}
+\setlength{\headsep}{26pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+
+
+
+\input{../latex/macros.tex}  % input some useful macros
+
+\begin{document}
+
+% header:
+\hfill\vbox{\hbox{AMath 586 / ATM 581}
+\hbox{Homework \#4}\hbox{Due Tuesday, May 21, 2019}}
+
+{\bf Name:} Your name here
+\vskip 5pt
+
+Homework is due to Canvas by 11:00pm PDT on the due date.
+
+To submit, see \url{https://canvas.uw.edu/courses/1271892/assignments/4812367}
+
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 1}  
+
+
+Consider the following method for solving the heat equation
+$u_t=u_{xx}$:
+\[
+U_i^{n+2} = U_i^n + \frac{2k}{h^2}(U_{i-1}^{n+1} - 2U_i^{n+1} +
+U_{i+1}^{n+1}).
+\]
+\begin{enumerate}
+\item Determine the formal order of accuracy of this method 
+(in both space and time) based on computing the local truncation error.
+
+\item Suppose we take $k=\alpha h^2$ for some fixed $\alpha>0$ and refine
+the grid.  Show that this method fails to be 
+Lax-Richtmyer stable for any choice of $\alpha$.
+
+Do this in two ways: 
+\begin{itemize}
+\item Consider the MOL interpretation and the stability region of
+the time-discretization being used.
+\item Use von Neumann analysis and solve a quadratic equation for $g(\xi)$.
+\end{itemize} 
+
+\item What if we take $k=\alpha h^3$ for some fixed $\alpha>0$ and refine
+the grid. Would this method be convergent?
+
+\end{enumerate}
+
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 2}  
+
+
+\begin{enumerate} 
+\item Suppose we want to approximate the fourth derivative $u_{xxxx}$
+numerically. One approach is to apply the second derivative operator twice,
+i.e., if 
+\[
+D_2 U_i = \frac 1 {h^2}(U_{i-1} - 2U_i + U_{i+1})
+\]
+then use
+\[
+u_{xxxx}(x_i) \approx \frac 1 {h^2}(D_2 U_{i-1} - 2D_2 U_i + D_2 U_{i+1}).
+\]
+When you write these terms out and combine them, this gives a finite
+difference approximation that is a linear combination of five values
+$U_{i-2},~U_{i-1},~U_i,~U_{i+1},~U_{i+2}$.  
+Write out this approximation.
+
+
+\item The notebook \verb+notebooks/vxx.ipynb+ from the
+class repository illustrates how to set up a matrix $A$ corresponding
+to the centered second difference operator, both for Dirichlet
+boundary conditions and for periodic boundary conditions.  Adapt
+the {\it periodic case} to test out this approximation to $u_{xxxx}$.
+Note that the matrix will now be pentadiagonal (5 nonzero diagonals)
+and will also have more terms in the corners that arise from periodicity.
+Test the accuracy on the periodic function $v(x) = \sin^2(2\pi x)$
+for which it's not too bad to compute the exact fourth derivative.  
+You should observe second order accuracy.
+
+\item Determine analytically the eigenvalues of this matrix.  Recall that
+since it is a circulant matrix, the $(m+1)\times (m+1)$ version of this
+matrix with $h=1/(m+1)$  will have eigenvectors $u^p$ with components 
+$u^p_j = e^{2\pi i pjh}$.  Note that since the matrix is symmetric it should
+have real eigenvalues, so simplify the eigenvalue expressions to make this
+clear. 
+
+\item Check that for fixed $p$ the eigenvalue $\lambda_p$ of the matrix
+agrees to $\bigo(h^2)$  with the eigenvalue $(2\pi p)^4$ of the differential
+operator $\partial_x^4$ on the interval $[0,1]$ with periodic boundary
+conditions.
+
+\item Suppose we want to solve the equation $u_t = -\kappa u_{xxxx}$
+for some $\kappa >0$ and we use the difference approximation derived
+above for the spatial term but then apply Forward Euler in time to
+the resulting MOL system.  What is the stability restriction relating
+$k$ and $h$ that would have to be satisfied for the method to be
+convergent?  
+
+\end{enumerate}
+
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+%--------------------------------------------------------------------------
+
+
+\end{document}
+

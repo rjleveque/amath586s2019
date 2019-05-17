@@ -25,6 +25,11 @@ might not include the output cells. (Often I delete the output before committing
 particularly if there are lots of figures.)  At any rate you won't be able to change
 anything or execute the notebook.
 
+html versions of a few notebooks can also be viewed at these links:
+
+ - `Pendulum_ForwardEuler.html <_static/Pendulum_ForwardEuler.html>`_
+ - `HeatEquation.html <_static/HeatEquation.html>`_
+
 If you want to modify something in a notebook and re-execute, you will need
 to download the notebook (or find it in the :ref:`class_repos`, in the `notebooks`
 directory).
@@ -34,7 +39,7 @@ notebook <http://jupyter-notebook.readthedocs.org/en/latest/>`_.
 See :ref:`software`.
 
 If you want to easily run notebooks without installing any software, you
-might try :ref:`smc`.
+might try `CoCalc <http:www.cocalc.com>`_.
 
 **New:** You can also run notebooks from this class repository in the cloud using 
 `binder <http://mybinder.org>`_.  To do so, simply |binder_link|.

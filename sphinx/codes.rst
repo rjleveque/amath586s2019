@@ -29,6 +29,8 @@ html versions of a few notebooks can also be viewed at these links:
 
  - `Pendulum_ForwardEuler.html <_static/Pendulum_ForwardEuler.html>`_
  - `HeatEquation.html <_static/HeatEquation.html>`_
+ - `Advection.html <_static/Advection.html>`_
+ - `Leapfrog_outflow.html <_static/Leapfrog_outflow.html>`_
 
 If you want to modify something in a notebook and re-execute, you will need
 to download the notebook (or find it in the :ref:`class_repos`, in the `notebooks`

@@ -1,0 +1,169 @@
+\documentclass[10pt]{article}
+
+\usepackage{graphicx}
+\usepackage{amsmath,amsfonts,amssymb}
+
+% use different colors for links:
+\usepackage{color}
+\definecolor{darkgreen}{rgb}{0.1,0.5,0.1}
+\definecolor{darkblue}{rgb}{0.2,0.2,1.0}
+\usepackage[colorlinks=true,linkcolor=darkblue,citecolor=darkblue,
+            filecolor=darkblue,urlcolor=darkgreen]{hyperref}
+
+
+\setlength{\textwidth}{6.2in}
+\setlength{\oddsidemargin}{0.3in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textheight}{8.9in}
+\setlength{\voffset}{-1in}
+\setlength{\headsep}{26pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+
+
+
+\input{../latex/macros.tex}  % input some useful macros
+
+\begin{document}
+
+% header:
+\hfill\vbox{\hbox{AMath 586 / ATM 581}
+\hbox{Homework \#5}\hbox{Due Tuesday, June 4, 2019}}
+
+{\bf Name:} Your name here
+\vskip 5pt
+
+Homework is due to Canvas by 11:00pm PDT on the due date.
+
+To submit, see \url{https://canvas.uw.edu/courses/1271892/assignments/4825694}
+
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 1}  
+
+Let $U = [U_0,~U_1,~\ldots,~U_m]^T$ be a vector of function values at
+equally spaced points on the interval $0\leq x \leq 1$, and suppose the
+underlying function is periodic and smooth.  Then we can approximate 
+the first derivative $u_x$ at all of these points by $DU$, where $D$ is
+circulant matrix such as
+\[
+D_- = \frac 1 h \brm 1&&&&-1\\ -1&1\\ &-1&1\\ &&-1&1\\ &&&-1&1\erm,  \qquad
+D_+ = \frac 1 h \brm -1&1\\ &-1&1\\ &&-1&1\\ &&&-1&1\\ 1&&&&-1\erm
+\]
+for first-order accurate one-sided approximations, or
+\[
+D_0 = \frac 1 {2h} \brm 0&1&&&-1\\ -1&0&1\\ &-1&0&1\\ &&-1&0&1\\ 1&&&-1&0\erm
+\]
+for a second-order accurate centered approximation.  (These are illustrated
+for a grid with $m+1=5$ unknowns and $h=1/5$.)
+
+
+The advection equation $u_t + au_x=0$ on the interval $0\leq x \leq
+1$ with periodic boundary conditions  
+gives rise to the MOL discretization $U'(t) = -aDU(t)$
+where $D$ is one of the matrices above.
+
+\begin{enumerate} 
+\item Discretizing $U' = -aD_-U$ by forward Euler gives the first order
+upwind method
+\[
+U_j^{n+1} = U_j^n - \frac{ak}{h} (U_j^n - U_{j-1}^n),
+\]
+where the index $i$ runs from 0 to $m$ with addition of indices performed
+mod $m+1$ to incorporate the periodic boundary conditions.
+
+Suppose instead we discretize the MOL equation by the second-order Taylor
+series method, 
+\[
+U^{n+1} = U^n - akD_-U^n + \half (ak)^2 D_-^2 U^n.
+\]
+Compute $D_-^2$ and also write out the formula for $U_j^n$ that results from
+this method.  
+
+\item How accurate is the method derived in part (a) compared to the
+Beam-Warming method, which is also a 3-point one-sided method?
+
+\item Suppose we make the method more symmetric:
+\[
+U^{n+1} = U^n - \frac{ak}{2} (D_+ +D_-)U^n + \half (ak)^2 D_+D_- U^n.
+\]
+Write out the formula for $U_j^n$ that results from this method.  
+What standard method is this?
+
+\end{enumerate}
+
+
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 2}  
+
+
+\begin{enumerate} 
+\item
+Produce a plot similar to those shown in Figure 10.1 for the upwind method
+(10.21) with the same values of $a=1$, $h=1/50$ and $k=0.8h$
+used in that figure.
+
+\item Produce the corresponding plot if the one-sided method (10.22) is
+instead used with the same values of $a,~h$, and $k$ as in part (a).
+Comment on how this relates to what stability theory tells you about this
+method with these parameters.
+\end{enumerate}
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+%--------------------------------------------------------------------------
+
+\vskip 1cm
+\hrule
+{\bf Problem 3}  
+
+The notebook \verb+notebooks/Advection.ipynb+ illustrates several numerical
+methods for the advection equation, with periodic boundary conditions.
+
+Familiarize yourself with how this works by experimenting with
+different parameter choices.  In particular understand how the periodic
+boundary conditions are implemented.
+
+\begin{enumerate}
+\item Modify the notebook to also implement the Beam-Warming method from
+Section 10.4.2.  Check that you observe second order accuracy.  Make sure you
+implement the correct version based on the sign of $a$.  (Assume $a>0$.)
+
+\item
+Experiment with different stepsizes to test the expected stability limit
+of this method.  What happens if it the time step is chosen to be
+right at the stability limit?  Why?
+
+\item
+Do the oscillations that develop trail behind the Gaussian peak or lead ahead
+of it?  You should be able to observe both cases depending on how you choose
+the time step.  Confirm that what you see agrees with what is expected 
+from Example 10.11, and produce sample plots for each case.
+
+\end{enumerate}
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+
+%--------------------------------------------------------------------------
+
+\end{document}
+

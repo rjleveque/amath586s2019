@@ -22,7 +22,8 @@ Schedule (tentative)
 * Midterm: Wednesday, May 8  
 * :ref:`Homework4` due Tuesday, May 21
 * :ref:`Homework5` due Tuesday, June 4
-* :ref:`Final` due Thursday, June 13
+* :ref:`Homework6`
+* :ref:`HomeworkFinal` due Thursday, June 13
 
 
 

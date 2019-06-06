@@ -11,8 +11,9 @@ Final project / take-home exam
 Required
 --------
 
-Due by 11:00pm on June 13, 2019. Submit to:
-`<https://canvas.uw.edu/courses/1271892/assignments/4833214>`_.
+Due by 11:00pm on June 13, 2019. 
+
+Submit to: `<https://canvas.uw.edu/courses/1271892/assignments/4833214>`_.
 
 - `final.pdf <_static/final.pdf>`_
 
@@ -21,8 +22,9 @@ Due by 11:00pm on June 13, 2019. Submit to:
 Extra Credit
 ------------
 
-Due by 11:00pm on June 15, 2019. Submit to:
-`<https://canvas.uw.edu/courses/1271892/assignments/4836612>`_.
+Due by 11:00pm on June 15, 2019. 
+
+Submit to: `<https://canvas.uw.edu/courses/1271892/assignments/4836612>`_.
 
 - `final_extra.pdf <_static/final_extra.pdf>`_
 
